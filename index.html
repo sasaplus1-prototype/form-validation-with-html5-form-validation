@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>form validation with hyperform</title>
+    <style>
+      div {
+        margin: 1rem 0;
+        transition: opacity 0.5s ease 0s;
+      }
+
+      input:valid {
+        background-color: white;
+        border: 1px solid black;
+      }
+      input:valid + .error {
+        opacity: 0;
+      }
+
+      input:invalid:not([disabled]) {
+        background-color: pink;
+        border: 1px solid red;
+      }
+      input:invalid:not([disabled]) + .error {
+        opacity: 1;
+      }
+
+      .error {
+        color: red;
+        opacity: 0;
+        transition: opacity 0.5s ease 0s;
+      }
+
+      .error-back {
+        background-color: lightpink;
+      }
+
+      .hidden {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="GET" name="main">
+      <div>
+        <label>age*
+          <input type="text" name="age" pattern="^\d{1,3}$" required>
+          <span class="error">error</span>
+        </label>
+      </div>
+
+      <div>
+        <label><input type="radio" name="switch" value="1" checked>no name</label>
+        <label><input type="radio" name="switch" value="2">need name</label>
+      </div>
+
+      <div class="hidden">
+        <label>name*
+          <input type="text" name="name" pattern="^[a-zA-Z]+$" disabled required>
+          <span class="error">error</span>
+        </label>
+      </div>
+
+      <hr>
+
+      <input type="submit" value="send">
+    </form>
+
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
